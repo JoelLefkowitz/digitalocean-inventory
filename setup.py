@@ -4,7 +4,7 @@ if __name__ == "__main__":
     setup(
         entry_points={
             "console_scripts": [
-                "digitalocean-inventory=digitalocean_inventory.__main__:entrypoint"
+                "digitalocean-inventory=digitalocean_inventory.__main__:fetch"
             ]
         },
         install_requires=[

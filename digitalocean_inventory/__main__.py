@@ -13,7 +13,8 @@ parser.add_argument("--list", type=bool, nargs="?", default=False, const=True)
 parser.add_argument("--debug", type=bool, nargs="?", default=False, const=True)
 parser.add_argument("--private-ips", type=bool, nargs="?", default=False, const=True)
 
-if __name__ == "__main__":
+
+def fetch():
     args = parser.parse_args()
 
     formatter = Formatter(
@@ -33,3 +34,7 @@ if __name__ == "__main__":
     )
 
     print(inventory)
+
+
+if __name__ == "__main__":
+    fetch()
