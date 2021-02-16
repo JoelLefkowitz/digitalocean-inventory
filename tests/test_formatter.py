@@ -1,8 +1,8 @@
-
 import pytest
 import os
-from src.formatter import Formatter
-from src.exceptions import DropletNameError
+from digitalocean_inventory.formatter import Formatter
+from digitalocean_inventory.exceptions import DropletNameError
+
 
 @pytest.fixture()
 def formatter():
@@ -11,6 +11,7 @@ def formatter():
         env="env",
         ssh_dir="ssh_dir",
     )
+
 
 def test_project_name(formatter):
     assert formatter.project_name == "project env"
@@ -27,13 +28,12 @@ def test_ssh_key_path(formatter):
 def test_parse_index(formatter):
     assert formatter.parse_index("project-env-0") == 0
     assert formatter.parse_index("project-env-10") == 10
-    
+
     with pytest.raises(DropletNameError):
         formatter.parse_index("project-en-0")
-    
+
     with pytest.raises(DropletNameError):
         formatter.parse_index("project-env-")
-    
+
     with pytest.raises(DropletNameError):
         formatter.parse_index("project-env-a")
-

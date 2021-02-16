@@ -70,5 +70,5 @@ autodoc_default_flags = ["members", "undoc-members"]
 napoleon_google_docstring = True
 
 # Apidoc settings
-apidoc_module_dir = relpath("../../src")
+apidoc_module_dir = relpath("../../digitalocean_inventory")
 apidoc_extra_args = ["-e"]

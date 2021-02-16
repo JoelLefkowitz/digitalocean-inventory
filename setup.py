@@ -2,6 +2,11 @@ from setuptools import setup
 
 if __name__ == "__main__":
     setup(
+        entry_points={
+            "console_scripts": [
+                "digitalocean-inventory=digitalocean_inventory.__main__:entrypoint"
+            ]
+        },
         install_requires=[
             "dataclasses",
             "safe_environ",
