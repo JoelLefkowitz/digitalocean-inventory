@@ -1,10 +1,10 @@
-import pprint 
 import json
+import pprint
 from dataclasses import dataclass
-from exceptions import MissingHostError
 from typing import Dict, Optional
 
-from manager import Manager
+from .exceptions import MissingHostError
+from .manager import Manager
 
 
 @dataclass
@@ -59,10 +59,10 @@ class Inventory:
                     self.manager.project_droplets,
                 )
             )
-        except StopIteration:
-            raise MissingHostError(self.host)
+            return self.manager.droplet_hostvars(host)
 
-        return self.manager.droplet_hostvars(host)
+        except StopIteration:
+            raise MissingHostError(host)
 
     def dump(self, output: Dict) -> str:
         return pprint.pformat(output, indent=2) if self.debug else json.dumps(output)

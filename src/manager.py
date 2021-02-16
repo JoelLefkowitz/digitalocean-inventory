@@ -1,9 +1,10 @@
-from exceptions import MissingProjectError
 from functools import cached_property
 from typing import Dict, List
 
-import digitalocean
-from formatters import Formatter
+import digitalocean  # type: ignore
+
+from .exceptions import MissingProjectError
+from .formatter import Formatter
 
 
 class Manager:

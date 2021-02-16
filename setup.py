@@ -4,13 +4,13 @@ if __name__ == "__main__":
     setup(
         install_requires=[
             "dataclasses",
+            "safe_environ",
             "python-digitalocean",
         ],
         extras_require={
             "dist": ["wheel", "twine", "bump2version"],
             "docs": [
                 "sphinx",
-                "pyimport",
                 "pypandoc",
                 "sphinxcontrib.apidoc",
                 "sphinxcontrib.pandoc_markdown",
