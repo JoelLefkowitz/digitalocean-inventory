@@ -99,6 +99,25 @@ if __name__ == '__main__':
 ansible-playbook -i inventory.py <playbook>
 ```
 
+
+### Docs
+
+Additional details are available in the [Documentation](documentation).
+
+### Tests
+
+Install dependencies:
+
+```bash
+pip install .[tests]
+```
+
+Run with pytest
+
+```bash
+pytest
+```
+
 ### Versioning
 
 [SemVer](http://semver.org/) is used for versioning. For a list of versions available, see the tags on this repository.
@@ -114,7 +133,7 @@ Releases are made on every major change.
 
 ### Author
 
-- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz](https://github.com/JoelLefkowitz)
+- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz](joel_lefkowitz)
 
 See also the list of contributors who participated in this project.
 
@@ -134,3 +153,5 @@ None yet!
 [issues_link]: https://github.com/JoelLefkowitz/digitalocean-inventory/issues
 [pulls]: https://img.shields.io/github/issues-pr/joellefkowitz/digitalocean-inventory "Pull requests"
 [pulls_link]: https://github.com/JoelLefkowitz/digitalocean-inventory/pulls
+[documentation]: https://digitalocean-inventory.readthedocs.io/en/latest/
+[joel_lefkowitz]: https://github.com/JoelLefkowitz
