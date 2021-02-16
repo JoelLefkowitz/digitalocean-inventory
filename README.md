@@ -102,7 +102,7 @@ ansible-playbook -i inventory.py <playbook>
 
 ### Docs
 
-Additional details are available in the [Documentation](documentation).
+Additional details are available in the [Documentation][documentation].
 
 ### Tests
 
@@ -133,7 +133,7 @@ Releases are made on every major change.
 
 ### Author
 
-- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz](joel_lefkowitz)
+- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz][joel_lefkowitz]
 
 See also the list of contributors who participated in this project.
 
