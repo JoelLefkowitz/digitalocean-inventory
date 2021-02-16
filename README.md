@@ -1,6 +1,6 @@
 # DigitalOcean inventory
 
-An ansible dynamic inventory for DigitalOcean.
+An ansible dynamic inventory for DigitalOcean
 
 ### Status
 
