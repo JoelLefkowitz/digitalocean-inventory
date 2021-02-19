@@ -14,7 +14,7 @@ parser.add_argument("--debug", type=bool, nargs="?", default=False, const=True)
 parser.add_argument("--private-ips", type=bool, nargs="?", default=False, const=True)
 
 
-def fetch():
+def fetch(stdout=True) -> Inventory:
     args = parser.parse_args()
 
     formatter = Formatter(
@@ -33,7 +33,10 @@ def fetch():
         lst=args.list, host=args.host, manager=manager, debug=args.debug
     )
 
-    print(inventory)
+    if stdout:
+        print(inventory)
+
+    return inventory
 
 
 if __name__ == "__main__":

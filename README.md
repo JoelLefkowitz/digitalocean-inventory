@@ -2,12 +2,12 @@
 
 An ansible dynamic inventory for DigitalOcean
 
-### Status
+## Status
 
-| Source     | Shields                                                        |
-| ---------- | -------------------------------------------------------------- |
-| Project    | ![license][license] ![release][release]                        |
-| Raised     | [![issues][issues]][issues_link] [![pulls][pulls]][pulls_link] |
+| Source  | Shields                                                        |
+| ------- | -------------------------------------------------------------- |
+| Project | ![license][license] ![release][release]                        |
+| Raised  | [![issues][issues]][issues_link] [![pulls][pulls]][pulls_link] |
 
 ## Installation
 
@@ -30,6 +30,7 @@ Export an access token:
 ```bash
 export DO_ACCESS_TOKEN=<token>
 ```
+
 The pacakges exposes the executable:
 
 ```bash
@@ -71,7 +72,7 @@ Tags and inventory metadata are compiled into the output:
 
 The executable has support for host, list and debug flags:
 
-```bash 
+```bash
 usage: Digital ocean inventory [-h] [--host [HOST]] [--list [LIST]] [--debug [DEBUG]]
                                [--private-ips [PRIVATE_IPS]]
 
@@ -99,6 +100,17 @@ if __name__ == '__main__':
 ansible-playbook -i inventory.py <playbook>
 ```
 
+You can consume the inventory in order to mutate it before outputting:
+
+```python
+#!/usr/bin/env python
+
+from digitalocean_inventory import fetch
+
+if __name__ == '__main__':
+    inventory = fetch(stdout=False)
+    print(inventory)
+```
 
 ### Docs
 
