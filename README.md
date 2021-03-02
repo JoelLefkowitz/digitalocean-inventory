@@ -4,10 +4,13 @@ An ansible dynamic inventory for DigitalOcean
 
 ## Status
 
-| Source  | Shields                                                        |
-| ------- | -------------------------------------------------------------- |
-| Project | ![license][license] ![release][release]                        |
-| Raised  | [![issues][issues]][issues_link] [![pulls][pulls]][pulls_link] |
+| Source     | Shields                                                                                                            |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ |
+| Project    | ![release][release_shield] ![license][license_shield] ![dependents][dependents_shield]                             |
+| Health     | ![travis][travis_shield] ![codacy][codacy_shield] ![coverage][coverage_shield] ![readthedocs][readthedocs_shield]  |
+| Repository | ![issues][issues_shield] ![pulls][pulls_shield]                                                                    |
+| Publishers | ![pypi][pypi_shield] ![python_versions][python_versions_shield] ![pypi_downloads][pypi_downloads_shield]           |
+| Activity   | ![contributors][contributors_shield] ![monthly_commits][monthly_commits_shield] ![last_commit][last_commit_shield] |
 
 ## Installation
 
@@ -112,27 +115,62 @@ if __name__ == '__main__':
     print(inventory)
 ```
 
-### Docs
+## Tests
 
-Additional details are available in the [Documentation][documentation].
-
-### Tests
-
-Install dependencies:
+To run unit tests:
 
 ```bash
-pip install .[tests]
+grunt tests:unit
 ```
 
-Run with pytest
+To generate a coverage report:
 
 ```bash
-pytest
+grunt tests:coverage
 ```
 
-### Versioning
+## Documentation
 
-[SemVer](http://semver.org/) is used for versioning. For a list of versions available, see the tags on this repository.
+This repository's documentation is hosted on [readthedocs][readthedocs].
+
+To generate the sphinx configuration:
+
+```bash
+grunt docs:generate
+```
+
+Then build the documentation:
+
+```bash
+grunt docs:build
+```
+
+## Tooling
+
+To run linters:
+
+```bash
+grunt lint
+```
+
+To run formatters:
+
+```bash
+grunt format
+```
+
+Before commiting new code:
+
+```bash
+grunt precommit
+```
+
+This will run linters, formaters, generate a test coverage report and the sphinx configuration.
+
+## Versioning
+
+This repository adheres to semantic versioning standards.
+For more inforamtion on semantic versioning visit [SemVer][semver].
 
 Bump2version is used to version and tag changes.
 For example:
@@ -141,29 +179,69 @@ For example:
 bump2version patch
 ```
 
-Releases are made on every major change.
+## Changelog
 
-### Author
+Please read this repository's [CHANGELOG](CHANGELOG.md) for details on changes that have been made.
 
-- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz][joel_lefkowitz]
+## Contributing
 
-See also the list of contributors who participated in this project.
+Please read this repository's guidelines on [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-### License
+## Contributors
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz][joellefkowitz]
 
-### Acknowledgments
+[![Buy Me A Coffee][coffee_button]][coffee]
 
-None yet!
+## Remarks
 
-<!--- Table links --->
+Lots of love to the open source community!
 
-[license]: https://img.shields.io/github/license/joellefkowitz/digitalocean-inventory
-[release]: https://img.shields.io/github/v/tag/joellefkowitz/digitalocean-inventory
-[issues]: https://img.shields.io/github/issues/joellefkowitz/digitalocean-inventory "Issues"
-[issues_link]: https://github.com/JoelLefkowitz/digitalocean-inventory/issues
-[pulls]: https://img.shields.io/github/issues-pr/joellefkowitz/digitalocean-inventory "Pull requests"
-[pulls_link]: https://github.com/JoelLefkowitz/digitalocean-inventory/pulls
-[documentation]: https://digitalocean-inventory.readthedocs.io/en/latest/
-[joel_lefkowitz]: https://github.com/JoelLefkowitz
+![Be kind][be_kind]
+
+<!-- Github links -->
+
+[pulls]: https://github.com/JoelLefkowitz/digitalocean-inventory/pulls
+[issues]: https://github.com/JoelLefkowitz/digitalocean-inventory/issues
+
+<!-- External links -->
+
+[readthedocs]: https://digitalocean-inventory.readthedocs.io/en/latest/
+[semver]: http://semver.org/
+[coffee]: https://www.buymeacoffee.com/joellefkowitz
+[coffee_button]: https://cdn.buymeacoffee.com/buttons/default-blue.png
+[be_kind]: https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif
+
+<!-- Acknowledgments -->
+
+[joellefkowitz]: https://github.com/JoelLefkowitz
+
+<!-- Project shields -->
+
+[release_shield]: https://img.shields.io/github/v/tag/joellefkowitz/digitalocean-inventory
+[license_shield]: https://img.shields.io/github/license/joellefkowitz/digitalocean-inventory
+[dependents_shield]: https://img.shields.io/librariesio/dependent-repos/pypi/digitalocean_inventory
+
+<!-- Health shields -->
+
+[travis_shield]: https://img.shields.io/travis/joellefkowitz/digitalocean-inventory
+[codacy_shield]: https://img.shields.io/codacy/coverage/digitalocean-inventory
+[coverage_shield]: https://img.shields.io/codacy/grade/digitalocean-inventory
+[readthedocs_shield]: https://img.shields.io/readthedocs/digitalocean-inventory
+
+<!-- Repository shields -->
+
+[issues_shield]: https://img.shields.io/github/issues/joellefkowitz/digitalocean-inventory
+[pulls_shield]: https://img.shields.io/github/issues-pr/joellefkowitz/digitalocean-inventory
+
+<!-- Publishers shields -->
+
+[pypi_shield]: https://img.shields.io/pypi/v/digitalocean_inventory
+[python_versions_shield]: https://img.shields.io/pypi/pyversions/digitalocean_inventory
+[pypi_downloads_shield]: https://img.shields.io/pypi/dw/digitalocean_inventory
+
+<!-- Activity shields -->
+
+[contributors_shield]: https://img.shields.io/github/contributors/joellefkowitz/digitalocean-inventory
+[monthly_commits_shield]: https://img.shields.io/github/commit-activity/m/joellefkowitz/digitalocean-inventory
+[last_commit_shield]: https://img.shields.io/github/last-commit/joellefkowitz/digitalocean-inventory
