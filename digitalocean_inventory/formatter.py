@@ -19,7 +19,9 @@ class Formatter:
         return f"{self.project}-{self.env}-{index}"
 
     def ssh_key_path(self, index: int) -> str:
-        return os.path.join(self.ssh_dir, f"{self.project}-{self.env}-{index}")
+        return os.path.join(
+            self.ssh_dir, f"{self.project}-{self.env}-{index}"
+        )
 
     def parse_index(self, name: str) -> int:
         prefix = f"^{self.project}-{self.env}-"

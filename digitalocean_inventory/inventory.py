@@ -55,7 +55,8 @@ class Inventory:
         try:
             host = next(
                 filter(
-                    lambda x: self.manager.droplet_ipv4(x) == self.host,
+                    lambda x: self.manager.droplet_ipv4(x)
+                    == self.host,
                     self.manager.project_droplets,
                 )
             )
@@ -65,4 +66,8 @@ class Inventory:
             raise MissingHostError(host)
 
     def dump(self, output: Dict) -> str:
-        return pprint.pformat(output, indent=2) if self.debug else json.dumps(output)
+        return (
+            pprint.pformat(output, indent=2)
+            if self.debug
+            else json.dumps(output)
+        )

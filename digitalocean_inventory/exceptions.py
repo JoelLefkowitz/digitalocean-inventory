@@ -11,4 +11,6 @@ class MissingHostError(Exception):
 
 class MissingProjectError(Exception):
     def __init__(self, project: str) -> None:
-        super().__init__(f"Could not find project with name: {project}")
+        super().__init__(
+            f"Could not find project with name: {project}"
+        )

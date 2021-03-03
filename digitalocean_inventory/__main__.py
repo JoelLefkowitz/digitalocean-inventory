@@ -9,9 +9,15 @@ from .manager import Manager
 
 parser = argparse.ArgumentParser("Digital ocean inventory")
 parser.add_argument("--host", type=str, nargs="?", default=False)
-parser.add_argument("--list", type=bool, nargs="?", default=False, const=True)
-parser.add_argument("--debug", type=bool, nargs="?", default=False, const=True)
-parser.add_argument("--private-ips", type=bool, nargs="?", default=False, const=True)
+parser.add_argument(
+    "--list", type=bool, nargs="?", default=False, const=True
+)
+parser.add_argument(
+    "--debug", type=bool, nargs="?", default=False, const=True
+)
+parser.add_argument(
+    "--private-ips", type=bool, nargs="?", default=False, const=True
+)
 
 
 def fetch(stdout=True) -> Inventory:
@@ -30,7 +36,10 @@ def fetch(stdout=True) -> Inventory:
     )
 
     inventory = Inventory(
-        lst=args.list, host=args.host, manager=manager, debug=args.debug
+        lst=args.list,
+        host=args.host,
+        manager=manager,
+        debug=args.debug,
     )
 
     if stdout:

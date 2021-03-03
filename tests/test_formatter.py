@@ -1,7 +1,9 @@
-import pytest
 import os
-from digitalocean_inventory.formatter import Formatter
+
+import pytest
+
 from digitalocean_inventory.exceptions import DropletNameError
+from digitalocean_inventory.formatter import Formatter
 
 
 @pytest.fixture()
@@ -22,7 +24,9 @@ def test_droplet_name(formatter):
 
 
 def test_ssh_key_path(formatter):
-    assert formatter.ssh_key_path(0) == os.path.join("ssh_dir", "project-env-0")
+    assert formatter.ssh_key_path(0) == os.path.join(
+        "ssh_dir", "project-env-0"
+    )
 
 
 def test_parse_index(formatter):

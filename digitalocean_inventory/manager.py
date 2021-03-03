@@ -8,7 +8,9 @@ from .formatter import Formatter
 
 
 class Manager:
-    def __init__(self, private_ips: bool, formatter: Formatter, token: str) -> None:
+    def __init__(
+        self, private_ips: bool, formatter: Formatter, token: str
+    ) -> None:
         self.private_ips = private_ips
         self.formatter = formatter
         self.manager = digitalocean.Manager(token=token)
@@ -29,14 +31,16 @@ class Manager:
             map(
                 lambda x: int(x.split(":")[2]),
                 filter(
-                    lambda x: x.split(":")[1] == "droplet", project.get_all_resources()
+                    lambda x: x.split(":")[1] == "droplet",
+                    project.get_all_resources(),
                 ),
             )
         )
 
         return list(
             filter(
-                lambda x: x.id in project_droplet_ids, self.manager.get_all_droplets()
+                lambda x: x.id in project_droplet_ids,
+                self.manager.get_all_droplets(),
             )
         )
 
@@ -44,7 +48,9 @@ class Manager:
     def meta_hostvars(self) -> Dict:
         return {
             "hostvars": {
-                self.droplet_ipv4(droplet): self.droplet_hostvars(droplet)
+                self.droplet_ipv4(droplet): self.droplet_hostvars(
+                    droplet
+                )
                 for droplet in self.project_droplets
             }
         }
@@ -61,6 +67,9 @@ class Manager:
     def droplet_ipv4(self, droplet: digitalocean.Droplet) -> str:
         network_tag = "private" if self.private_ips else "public"
         network = next(
-            filter(lambda x: x["type"] == network_tag, droplet.networks["v4"])
+            filter(
+                lambda x: x["type"] == network_tag,
+                droplet.networks["v4"],
+            )
         )
         return network["ip_address"]
