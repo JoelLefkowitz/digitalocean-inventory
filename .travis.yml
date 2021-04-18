@@ -1,0 +1,67 @@
+language: python
+python: 3.8
+
+before_install:
+  - pip install .
+  - nvm install 14
+  - npm install
+  - npm install -g grunt-cli
+
+cache:
+  - pip
+  - npm
+
+aliases:
+  codacy_report: &codacy_report
+    after_success: python-codacy-coverage -r coverage.xml
+
+  codacy_secure: &codacy_secure
+    env:
+      secure:
+
+  install_pandoc: &install_pandoc
+    addons:
+      apt:
+        packages:
+          - pandoc
+
+  pypi_secure: &pypi_secure
+    password:
+      secure:
+
+jobs:
+  include:
+    - stage: Linters
+      script: grunt lint
+      install: pip install .[tools]
+
+    - &unittests
+      stage: Unit tests
+      python: 3.6
+      script: grunt tests:unit
+      install: pip install .[tests]
+
+    - <<: *unittests
+      python: 3.7
+
+    - <<: *unittests
+      python: 3.8
+      <<: *codacy_report
+      <<: *codacy_secure
+
+    - stage: Docs
+      script: "grunt docs:build"
+      install: pip install -r docs/requirements.txt
+      <<: *install_pandoc
+
+    - stage: Publish
+      install: pip install .[tools]
+      script: echo This version refers to $(git describe --tags)
+      deploy:
+        provider: pypi
+        distributions: sdist bdist_wheel
+        username: "__token__"
+        <<: *pypi_secure
+        on:
+          tags: true
+          branch: master

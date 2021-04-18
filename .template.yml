@@ -1,0 +1,48 @@
+output_dir: .
+
+clear_top_level: true
+logical_grouping: true
+
+collections:
+  - common
+  - python
+
+loader_paths:
+  - docs
+
+render_context:
+  project:
+    project_name: digitalOcean-inventory
+    version: 1.1.0
+
+    verbose_name: DigitalOcean inventory
+    description: An Ansible dynamic inventory for DigitalOcean.
+
+    repository: https://github.com/JoelLefkowitz/digitalOcean-inventory
+    codacy_id: 5d5c3600cd99457e8d9a3bc3f16adff8
+
+    inserts:
+      - usage.md
+
+  author:
+    author: Joel Lefkowitz
+    author_email: joellefkowitz@hotmail.com
+    author_github_handle: joellefkowitz
+
+  package:
+    is_pypi_package: true
+    package_name: digitalocean-inventory
+
+  portfolio:
+    is_portfolio: true
+    status_level: 4
+
+    languages:
+      - Python
+
+    paradigms:
+      - Object oriented programming
+
+  public_keys:
+    travis_pypi: eYm94pwz4I9SAj/b7Qa0q6rwtpQ8hKTIfvPTUJxYZ26lusdFH3sKBHnQpuu5ERwjqENTgCl4UN37M28ziG3iQmm7VjbzERGYzj1qMfbTm2otknPCaQgV/+ipfakblIbjgIkzxPc9e8+CfUXPh2+OzAXitE3ZI8H669bbSMWTNkJ3iQjQw0GPdDEcGkCi6RG7HDGgf1+t0jHe4gYEivdSsRZn0VhjMhDPKIOwU43R10d2YDtXIKtIu75b7PdEersvCe93Sg//yrCUIwafpaC5gLduG5IbPbHSb9Pb1M5A4LmMANTo83nnXqqCwvmhbmAcQfQ8bWF+4f/JhGXiS0lzXlvNUVN4WWTLQJduuvFGH2uFlX5L9YAu+9o6JN1dv6cXejxsbHO2V5S4MngKysccn6nTFS+6R14gmlShxoUHMjhphM6LASYS4Zs13V5ivNpv5JBUdN3TjwE1gsxr+rBncUnvoxrzf51EUFneb+aEL9HUoonXkh+jnTjeY3HAx7vy3CdaxUR9/V9KrIxFvJt4waZU9md/ZBcn09+MGWJ5aGqaZuAR8rqrd00DuUwtIDLMhBckAMhp+Uoj34CHd/I0dwT15b2nHV24g0C4ts3YDrAP8d9CnJC/exvgHAnSmUo2k0aINf6IwfwosubWQN+rhZ5WIe+KA5MpkeiOC4cfzBw=
+    travis_codacy: a+5EnWn1ma5iOsRO1YkeENBMQwt+R6BzzTveb1G7Xt8akLK55puGdkiK16pnzuo4oA9tKZdgjLL71yQh0uQ2t32YBJ1j1ouAB08yOMoKsQfAcxqhaXA1w+Pm5lXwX5e0BejTpwCS1kLdZOl267fcJHBJNkyn7hqG8SaKnHeXf/ja/O1kOXWxkFddWkRJtl+znnyJogj6MP6j5NVYs/PqgcrtZnTcOpjhi2IyITxqlfatSowDIPLzJeDFBHi+iuYha3trfMJwKzS3510/mi5Xt4O+qv7Tougw7fz8k7gMotNGEAvKYCkefi/ru7GO134IHW+FAr787eUlC6ZNgly2JWHa+Km8eHRbmDiLXGhfzTET29ySRjoKPHkpVVWhL7bs9uOQ64feQfuj/C61wAOweB+sKg1EfcP9DZiq9lsI2Y19Ae1/P3BjZ3QBFab5mj6ybml400aNpyYtbb+9ppSLN2aBZgT/shCcJ7P3j7yZkqyEkXCHoM8sfCFC5tjWZxnkCgMxcmXn690+j2mmDNAeuKG+ntCeOPjn0hNu1SmemNfcd22mgVYBfum57cBPMCzwIRbKelr/2quTsliXpJp5pk4pzeRT2SQY5qH76knNBMqN+cNxI93QkHkWd5A6VFH8rJLlZpOqjMcXpcGYos9e2RLmrq3C1BMGnRCP/N7bnJA=

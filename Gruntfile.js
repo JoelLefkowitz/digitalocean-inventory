@@ -1,19 +1,29 @@
-function quit(name) {
-  console.log("Task: '".concat(name, "' has not been implemented"));
-}
+const formatters = ["prettier", "black", "isort"];
+const linters = ["cspell", "remark", "pylint", "bandit", "mypy"];
+
+const exec = {
+  bandit: "bandit -c .bandit -r builders",
+  black: "black builders",
+  cspell: "npx cspell -c .cspell.json '{*,.*,**/*}'",
+  isort: "isort builders",
+  mypy: "mypy builders",
+  prettier: "prettier . --write",
+  pylint: "pylint --rcfile .pylintrc builders",
+  quickdocs: "quickdocs .quickdocs.yml",
+  remark: "npx remark -r .remarkrc .",
+  sphinx: "sphinx-build docs build",
+  tox: "tox",
+};
+
+const execTask = (i) => "exec:".concat(i);
 
 module.exports = function (grunt) {
-  grunt.initConfig();
-  grunt.registerTask("run", (env) => quit("run"));
-  grunt.registerTask("build", (env) => quit("build"));
-  grunt.registerTask("tests", (target) => quit("tests"));
-  grunt.registerTask("docs", (target) => quit("docs"));
-  grunt.registerTask("lint", () => quit("lint"));
-  grunt.registerTask("format", () => quit("format"));
-  grunt.registerTask("precommit", [
-    "lint",
-    "format",
-    "tests:coverage",
-    "docs:generate",
-  ]);
+  grunt.initConfig({ exec });
+  grunt.loadNpmTasks("grunt-exec");
+  grunt.registerTask("lint", linters.map(execTask));
+  grunt.registerTask("format", formatters.map(execTask));
+  grunt.registerTask("tests:unit", "exec:tox");
+  grunt.registerTask("docs:generate", "exec:quickdocs");
+  grunt.registerTask("docs:build", "exec:sphinx");
+  grunt.registerTask("precommit", ["lint", "tests:unit", "docs:generate"]);
 };
