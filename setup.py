@@ -1,47 +1,52 @@
+from functools import reduce
+from typing import Any, Dict, List, cast
+
 from setuptools import setup
 
-if __name__ == "__main__":
-    setup(
-        entry_points={
-            "console_scripts": ["quickdocs = quickdocs.__main__:main"]
-        },
-        install_requires=[
-            "dataclasses",
-            "pyimport",
-            "pypandoc",
-            "ruamel.yaml",
-            "simple_pipes",
-            "sphinx-autodoc-annotation",
-            "sphinx",
-            "sphinxcontrib.apidoc",
-            "sphinxcontrib.pandoc_markdown",
-            "walkmate",
-            "yummy_sphinx_theme",
+configuration = {
+    "extras_require": {
+        "tests": ["mock"],
+        "linters": [
+            "mypy",
+            "pylint",
+            "bandit",
         ],
-        extras_require={
-            "tests": [
-                "coverage",
-                "codacy-coverage",
-                "pytest-bdd",
-                "pytest-cov",
-                "pytest-html",
-                "pytest-sugar",
-                "pytest-watch",
-                "pytest",
-                "tox-travis",
-                "tox",
-            ],
-            "tools": [
-                "autoflake",
-                "bandit",
-                "black",
-                "bump2version",
-                "isort",
-                "mypy",
-                "pylint",
-                "quickdocs",
-                "twine",
-                "wheel",
-            ],
-        },
+        "formatters": [
+            "autoflake",
+            "black",
+            "isort",
+        ],
+        "runtests": [
+            "coverage",
+            "codacy-coverage",
+            "pytest-bdd",
+            "pytest-cov",
+            "pytest-html",
+            "pytest-sugar",
+            "pytest-watch",
+            "pytest",
+            "tox-travis",
+            "tox",
+        ],
+        "docs": ["quickdocs"],
+        "publishers": [
+            "twine",
+            "wheel",
+            "bump2version",
+        ],
+    },
+}
+
+if __name__ == "__main__":
+    extras_require = cast(
+        Dict[Any, List[Any]], configuration["extras_require"]
     )
+
+    merge_lists = lambda acc, x: list(set(acc) | (set(x)))
+
+    configuration["extras_require"] = dict(
+        **extras_require,
+        **{"all": reduce(merge_lists, extras_require.values())}
+    )
+
+    setup(**configuration)

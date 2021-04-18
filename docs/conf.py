@@ -8,13 +8,10 @@ sys.path.append("..")
 """
     Sphinx core settings
 """
-project = "digitalocean-inventory"
+project = "digitalOcean-inventory"
 version = "1.1.0"
 author = "Joel Lefkowitz"
-
 master_doc = "index"
-
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "venv"]
 
 extensions = [
     "sphinx.ext.autodoc",
@@ -23,6 +20,17 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinxcontrib.apidoc",
 ]
+
+html_title = "DigitalOcean inventory"
+html_favicon = "static/favicon.ico"
+
+html_static_path = ["static"]
+html_css_files = ["quickdocs.css"]
+
+html_permalinks = False
+html_add_permalinks = None
+
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "venv"]
 
 """
     Sphinx autodoc settings
@@ -33,24 +41,16 @@ typehints_fully_qualified = True
 autodoc_default_flags = ["members", "undoc-members"]
 napoleon_google_docstring = True
 
-apidoc_module_dir = "../digitalocean_inventory"
+apidoc_module_dir = "../digitalocean-inventory"
 apidoc_extra_args = ["-e"]
 
 """
     Yummy sphinx theme settings
 """
 html_theme = "yummy_sphinx_theme"
-html_title = "DigitalOcean inventory"
-
-static_dir = "static"
-
-html_favicon = "static/favicon.ico"
-html_css_files = "static/styles.css"
-
-html_add_permalinks = ""
 html_theme_options = {
     "navbar_icon": "spin fa-book",
-    "github_url": "JoelLefkowitz/digitalocean-inventory"
+    "github_url": "https://github.com/JoelLefkowitz/digitalOcean-inventory"
 }
 
 """
@@ -61,12 +61,14 @@ html_theme_options = {
 copyright = f"{datetime.datetime.now().year} {author}"
 
 with open("../README.md", "r") as stream:
-    html = re.sub(
-        "<h1.*>.*?</h1>",
-        "",
-        pypandoc.convert(stream.read(), "html", format="md"),
-        flags=re.DOTALL
+    html_readme = pypandoc.convert(
+        stream.read(),
+        "html",
+        format="md",
+        extra_args=["-s", "-fmarkdown-implicit_figures"]
     )
+    
+    headerless_readme = re.sub("<h1.*>.*?</h1>", "", html_readme, flags=re.DOTALL)
 
 with open("README.html", "w") as stream:
-    stream.write(html)
+    stream.write(headerless_readme)

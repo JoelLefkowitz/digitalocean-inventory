@@ -1,7 +1,7 @@
-project: digitalocean-inventory
+project: digitalOcean-inventory
 version: 1.1.0
 author: Joel Lefkowitz
 verbose_name: DigitalOcean inventory
-html_title: DigitalOcean inventory
-github_url: JoelLefkowitz/digitalocean-inventory
-apidoc_module_dir: digitalocean_inventory
+html_title: DigitalOcean inventory 
+github_url: https://github.com/JoelLefkowitz/digitalOcean-inventory
+apidoc_module_dir: digitalocean-inventory
