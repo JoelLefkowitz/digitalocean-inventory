@@ -38,7 +38,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install pip dependencies
-        run: pip install .[all]
+        run: |
+          pip install .[all]
+          mypy --install-types
 
       - name: Install npm dependencies
         run: npm ci
