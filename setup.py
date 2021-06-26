@@ -8,6 +8,7 @@ configuration = {
         "dataclasses",
         "python-digitalocean",
         "safe_environ",
+        "types-dataclasses",
         "backports.cached_property",
     ],
     "extras_require": {
