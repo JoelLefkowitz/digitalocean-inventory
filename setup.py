@@ -4,8 +4,12 @@ from typing import Any, Dict, List, cast
 from setuptools import setup
 
 configuration = {
+    "install_requires": [
+        "python-digitalocean",
+        "safe_environ",
+        "backports.cached_property",
+    ],
     "extras_require": {
-        "tests": ["mock"],
         "linters": [
             "mypy",
             "pylint",
@@ -16,21 +20,9 @@ configuration = {
             "black",
             "isort",
         ],
-        "runtests": [
-            "coverage",
-            "codacy-coverage",
-            "pytest-bdd",
-            "pytest-cov",
-            "pytest-html",
-            "pytest-sugar",
-            "pytest-watch",
-            "pytest",
-            "tox-travis",
-            "tox",
-        ],
-        "docs": ["quickdocs"],
         "publishers": [
             "twine",
+            "quickdocs",
             "wheel",
             "bump2version",
         ],
@@ -38,15 +30,12 @@ configuration = {
 }
 
 if __name__ == "__main__":
-    extras_require = cast(
-        Dict[Any, List[Any]], configuration["extras_require"]
-    )
+    extras_require = cast(Dict[Any, List[Any]], configuration["extras_require"])
 
     merge_lists = lambda acc, x: list(set(acc) | (set(x)))
 
     configuration["extras_require"] = dict(
-        **extras_require,
-        **{"all": reduce(merge_lists, extras_require.values())}
+        **extras_require, **{"all": reduce(merge_lists, extras_require.values())}
     )
 
     setup(**configuration)

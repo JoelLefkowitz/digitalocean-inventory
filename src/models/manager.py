@@ -1,22 +1,20 @@
-from functools import cached_property
-from typing import Dict, List
+from typing import Any, Dict, List
 
 import digitalocean  # type: ignore
+from backports.cached_property import cached_property
 
 from .exceptions import MissingProjectError
 from .formatter import Formatter
 
 
 class Manager:
-    def __init__(
-        self, private_ips: bool, formatter: Formatter, token: str
-    ) -> None:
+    def __init__(self, private_ips: bool, formatter: Formatter, token: str) -> None:
         self.private_ips = private_ips
         self.formatter = formatter
         self.manager = digitalocean.Manager(token=token)
 
     @cached_property
-    def project_droplets(self) -> List[digitalocean.Droplet]:
+    def project_droplets(self) -> List[Any]:
         try:
             project = next(
                 filter(
@@ -24,8 +22,8 @@ class Manager:
                     self.manager.get_all_projects(),
                 )
             )
-        except StopIteration:
-            raise MissingProjectError(self.formatter.project_name)
+        except StopIteration as err:
+            raise MissingProjectError(self.formatter.project_name) from err
 
         project_droplet_ids = list(
             map(
@@ -45,17 +43,15 @@ class Manager:
         )
 
     @property
-    def meta_hostvars(self) -> Dict:
+    def meta_hostvars(self) -> Dict[str, Any]:
         return {
             "hostvars": {
-                self.droplet_ipv4(droplet): self.droplet_hostvars(
-                    droplet
-                )
+                self.droplet_ipv4(droplet): self.droplet_hostvars(droplet)
                 for droplet in self.project_droplets
             }
         }
 
-    def droplet_hostvars(self, droplet: digitalocean.Droplet) -> Dict:
+    def droplet_hostvars(self, droplet: Any) -> Dict[str, Any]:
         return {
             "ansible_python_interpreter": "/usr/bin/python3",
             "ansible_ssh_extra_args": "-o StrictHostKeyChecking=no",
@@ -64,7 +60,7 @@ class Manager:
             ),
         }
 
-    def droplet_ipv4(self, droplet: digitalocean.Droplet) -> str:
+    def droplet_ipv4(self, droplet: Any) -> str:
         network_tag = "private" if self.private_ips else "public"
         network = next(
             filter(

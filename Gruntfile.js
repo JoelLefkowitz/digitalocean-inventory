@@ -1,53 +1,37 @@
-module.exports = function (grunt) {
-  grunt.initConfig({
-    exec: {
-      bandit: "bandit --ini .bandit -r digitalocean-inventory",
-      black: "black digitalocean-inventory",
-      cspell: "npx cspell -c .cspell.json {*,.*,**/*}",
-      isort: "isort digitalocean-inventory",
-      mypy: "mypy digitalocean-inventory",
-      prettier: "prettier . --write",
-      pylint: "pylint --rcfile .pylintrc  --fail-under=8 digitalocean-inventory",
-      quickdocs: "quickdocs .quickdocs.yml",
-      remark: "npx remark -r .remarkrc .",
-      sphinx: "sphinx-build docs build",
-      tox: "tox",
-    },
-  });
-
+module.exports = (grunt) => {
+  grunt.initConfig({ exec });
   grunt.loadNpmTasks("grunt-exec");
-
   grunt.registerTask(
     "lint",
     "Lint the source code",
-    ["cspell", "remark", "pylint", "bandit", "mypy"].map((i) =>
-      "exec:".concat(i)
-    )
+    toExecs(["cspell", "remark", "pylint", "bandit", "mypy"])
   );
-
   grunt.registerTask(
     "format",
     "Format the source code",
-    ["prettier", "black", "isort"].map((i) => "exec:".concat(i))
+    toExecs(["prettier", "black", "isort", "autoflake"])
   );
-
-  grunt.registerTask("tests:unit", "Run unit tests", "exec:tox");
-
   grunt.registerTask(
-    "docs:generate",
-    "Generate a Sphinx documentation configuration",
-    "exec:quickdocs"
+    "test",
+    "Sequentially run all unit test suites",
+    toExecs(["tox"])
   );
+};
 
-  grunt.registerTask(
-    "docs:build",
-    "Build documentation from a Sphinx configuration",
-    "exec:sphinx"
-  );
+const toExecs = (arr) => arr.map((i) => "exec:".concat(i));
 
-  grunt.registerTask(
-    "precommit",
-    "Run a sequence of precommit quality control tasks",
-    ["lint", "tests:unit", "docs:generate"]
-  );
+const flakeOptions =
+  "--remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports";
+
+const exec = {
+  autoflake: `autoflake . -ri --exclude 'venv, conftest.py' ${flakeOptions}`,
+  bandit: "bandit -c .bandit -r src",
+  black: "black .",
+  cspell: 'npx cspell ".*" "*" "**/*"',
+  isort: "isort .",
+  mypy: "mypy .",
+  prettier: "npx prettier . --write --ignore-path .gitignore",
+  pylint: "pylint --rcfile .pylintrc  --fail-under=8 src tests",
+  remark: "npx remark -r .remarkrc . .github",
+  tox: "tox . -e py",
 };
