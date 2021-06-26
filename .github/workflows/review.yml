@@ -29,6 +29,11 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
+      - name: Set the node version
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
       - name: Checkout the source code
         uses: actions/checkout@v2
 
@@ -36,7 +41,7 @@ jobs:
         run: pip install .
 
       - name: Install npm dependencies
-        run: cpm ci
+        run: npm ci
 
       - name: Install global npm packages
         run: npm i -g grunt-cli
