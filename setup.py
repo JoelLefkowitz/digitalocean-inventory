@@ -21,9 +21,10 @@ configuration = {
             "black",
             "isort",
         ],
+        "tests": ["tox"],
+        "docs": ["quickdocs"],
         "publishers": [
             "twine",
-            "quickdocs",
             "wheel",
             "bump2version",
         ],
