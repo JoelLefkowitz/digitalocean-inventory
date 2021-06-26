@@ -5,6 +5,7 @@ from setuptools import setup
 
 configuration = {
     "install_requires": [
+        "dataclasses",
         "python-digitalocean",
         "safe_environ",
         "backports.cached_property",
