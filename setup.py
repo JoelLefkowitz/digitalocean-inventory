@@ -5,11 +5,11 @@ from setuptools import setup
 
 configuration = {
     "install_requires": [
+        "backports.cached_property",
         "dataclasses",
         "python-digitalocean",
-        "safe_environ",
         "types-dataclasses",
-        "backports.cached_property",
+        "typing_extensions",
     ],
     "extras_require": {
         "linters": [
@@ -22,7 +22,7 @@ configuration = {
             "black",
             "isort",
         ],
-        "tests": ["tox"],
+        "tests": ["tox", "coverage", "pytest", "pytest_bdd"],
         "docs": ["quickdocs"],
         "publishers": [
             "twine",

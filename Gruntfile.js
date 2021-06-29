@@ -29,9 +29,9 @@ const exec = {
   black: "black .",
   cspell: 'npx cspell ".*" "*" "**/*"',
   isort: "isort .",
-  mypy: "mypy .",
+  mypy: "mypy . --exclude venv",
   prettier: "npx prettier . --write --ignore-path .gitignore",
   pylint: "pylint --rcfile .pylintrc  --fail-under=8 src tests",
-  remark: "npx remark -r .remarkrc . .github",
+  remark: "npx remark -r .remarkrc -i .gitignore . .github",
   tox: "tox . -e py",
 };

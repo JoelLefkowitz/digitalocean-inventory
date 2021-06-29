@@ -1,11 +1,17 @@
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 
 
-def cli_parser() -> ArgumentParser:
+def cli_parser() -> Namespace:
     parser = ArgumentParser("Digital ocean inventory")
-    parser.add_argument("--host", type=str, nargs="?", default=False)
-    parser.add_argument("--list", type=bool, nargs="?", default=False, const=True)
-    parser.add_argument(
-        "--private-ips", type=bool, nargs="?", default=False, const=True
-    )
-    return parser
+    add_key(parser, "--host")
+    add_option(parser, "--list")
+    add_option(parser, "--debug")
+    return parser.parse_args()
+
+
+def add_key(parser: ArgumentParser, key: str) -> None:
+    parser.add_argument(key, type=str, nargs="?", default=None)
+
+
+def add_option(parser: ArgumentParser, option: str) -> None:
+    parser.add_argument(option, type=bool, nargs="?", default=False, const=True)

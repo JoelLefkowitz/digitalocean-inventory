@@ -20,29 +20,171 @@ pip install digitalocean-inventory
 
 ## Usage
 
+Set an access token and the project name as environment variables. The digitalocean-inventory executable acts as an [inventory script][inventory_scripts] for all droplets in the project:
+
+```bash
+export DO_PROJECT=example
+export DO_ACCESS_TOKEN=...
+
+$ digitalocean-inventory
+
+123.123.123.123
+```
+
+```bash
+$ digitalocean-inventory --list
+
+{
+    "all": {
+    "hosts": [
+        "123.123.123.123"
+    ],
+    "vars": {},
+    "children": {}
+    }
+}
+```
+
+```bash
+$ digitalocean-inventory --host 123.123.123.123
+
+{}
+```
+
+## Features
+
+### Extensibility
+
+You can extend the behavior of the inventory by importing it as a python package:
+
+```python
+import json
+import sys
+
+from digitalocean_inventory import fetch
+
+inventory = fetch(project)
+json.dump(inventory.list, sys.stdout)
+
+{
+    "all": {
+    "hosts": [
+        "123.123.123.123"
+    ],
+    "vars": {},
+    "children": {}
+    }
+}
+```
+
+```python
+json.dump(inventory.host("123.123.123.123"), sys.stdout)
+
+{}
+```
+
+### SSH keys
+
+You can set an ssh key to use to communicate with droplets and it will be added to the droplet metadata:
+
+```bash
+export DO_SSH_KEY=/Users/joel/.ssh/example
+
+$ digitalocean-inventory --list
+
+{
+  "meta": {
+    "hostvars": {
+      "123.123.123.123": {
+        "ansible_ssh_extra_args": "-o StrictHostKeyChecking=no",
+        "ansible_ssh_private_key_file": "/Users/joel/.ssh/example"
+      }
+    }
+  },
+  "all": {
+    "hosts": [
+        "123.123.123.123"
+    ],
+    "vars": {},
+    "children": {}
+    }
+}
+```
+
+```bash
+$ digitalocean-inventory --host 123.123.123.123
+
+{
+    "ansible_ssh_extra_args": "-o StrictHostKeyChecking=no",
+    "ansible_ssh_private_key_file": "/Users/joel/.ssh/example"
+}
+```
+
+You can set an ssh directory instead and droplets will be paired with ssh keys matching their names:
+
+```bash
+export DO_SSH_DIR=/Users/joel/.ssh/example
+
+$ digitalocean-inventory --list
+
+{
+  "meta": {
+    "hostvars": {
+      "123.123.123.123": {
+        "ansible_ssh_extra_args": "-o StrictHostKeyChecking=no",
+        "ansible_ssh_private_key_file": "/Users/joel/.ssh/example/droplet-0"
+      }
+    }
+  },
+  "all": {
+    "hosts": [
+        "123.123.123.123"
+    ],
+    "vars": {},
+    "children": {}
+    }
+}
+```
+
+### Droplet tags
+
+Droplets with tags will be grouped:
+
+```bash
+$ digitalocean-inventory --list
+
+  {
+    "all": {
+    "hosts": [
+        "123.123.123.123"
+    ],
+    "vars": {},
+    "children": {}
+    },
+    "production": {
+        "hosts": [
+        "123.123.123.123"
+        ]
+    },
+    "managers": {
+        "hosts": [
+        "123.123.123.123"
+        ]
+    }
+  }
+```
+
 ## Tests
 
 To run unit tests and generate a coverage report:
 
 ```bash
-grunt tests:unit
+grunt test
 ```
 
 ## Documentation
 
 This repository's documentation is hosted on [readthedocs][readthedocs].
-
-To generate the sphinx configuration:
-
-```bash
-grunt docs:generate
-```
-
-Then build the documentation:
-
-```bash
-grunt docs:build
-```
 
 ## Tooling
 
@@ -58,17 +200,9 @@ To run formatters:
 grunt format
 ```
 
-Before committing new code:
-
-```bash
-grunt precommit
-```
-
-This will run linters, formatters, tests, generate a test coverage report and the sphinx configuration.
-
 ## Continuous integration
 
-This repository uses Travis CI to build and test each commit. Formatting tasks and writing/generating documentation must be done before committing new code.
+This repository uses github actions to lint and test each commit. Formatting tasks and writing/generating documentation must be done before committing new code.
 
 ## Versioning
 
@@ -112,6 +246,7 @@ Lots of love to the open source community!
 [coffee]: https://www.buymeacoffee.com/joellefkowitz
 [coffee_button]: https://cdn.buymeacoffee.com/buttons/default-blue.png
 [be_kind]: https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif
+[inventory_scripts]: https://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html#developing-inventory-scripts
 
 <!-- Acknowledgments -->
 
