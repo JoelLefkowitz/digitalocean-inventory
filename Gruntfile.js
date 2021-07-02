@@ -20,11 +20,15 @@ module.exports = (grunt) => {
 
 const toExecs = (arr) => arr.map((i) => "exec:".concat(i));
 
-const flakeOptions =
-  "--remove-all-unused-imports --remove-unused-variables --ignore-init-module-imports";
+const flakeOptions = `
+   -v -ri --exclude 'venv, conftest.py'
+   --remove-unused-variables
+   --remove-all-unused-imports
+   --ignore-init-module-imports
+`;
 
 const exec = {
-  autoflake: `autoflake . -ri --exclude 'venv, conftest.py' ${flakeOptions}`,
+  autoflake: `autoflake . ${flakeOptions}`,
   bandit: "bandit -c .bandit -r src",
   black: "black .",
   cspell: 'npx cspell ".*" "*" "**/*"',

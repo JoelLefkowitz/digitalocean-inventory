@@ -19,7 +19,7 @@ def select_key(
     else:
         raise EmptySSHSelector()
 
-    if not os.path.exists(path) and os.path.isfile(path):
+    if not os.path.exists(path) or not os.path.isfile(path):
         raise MissingSSHKey(path)
 
-    return path
+    return os.path.normpath(path)

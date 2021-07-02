@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import Any, Dict
 
-from ..external.client import Client
 from ..external.interfaces import Droplet, droplet_ip
+from .client import Client
 
 
 @dataclass

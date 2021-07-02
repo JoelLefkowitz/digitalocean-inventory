@@ -5,18 +5,18 @@ from typing import Any, Dict, List
 from typing_extensions import Protocol
 
 
+class Droplet(Protocol):
+    id: int
+    name: str
+    networks: Dict[str, Any]
+
+
 class Project(Protocol):
     id: int
     name: str
 
     def get_all_resources(self) -> List[str]:
         ...
-
-
-class Droplet(Protocol):
-    id: int
-    name: str
-    networks: Dict[str, Any]
 
 
 class Manager(Protocol):

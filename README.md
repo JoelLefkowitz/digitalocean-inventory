@@ -242,7 +242,7 @@ Lots of love to the open source community!
 
 <!-- External links -->
 
-[readthedocs]: https://digitalOcean-inventory.readthedocs.io/en/latest/
+[readthedocs]: https://digitalocean-inventory.readthedocs.io/en/latest/
 [coffee]: https://www.buymeacoffee.com/joellefkowitz
 [coffee_button]: https://cdn.buymeacoffee.com/buttons/default-blue.png
 [be_kind]: https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif
@@ -254,24 +254,24 @@ Lots of love to the open source community!
 
 <!-- Project shields -->
 
-[release_shield]: https://img.shields.io/github/v/tag/joellefkowitz/digitalOcean-inventory
-[license_shield]: https://img.shields.io/github/license/joellefkowitz/digitalOcean-inventory
-[lines_shield]: https://img.shields.io/tokei/lines/github/joellefkowitz/digitalOcean-inventory
-[languages_shield]: https://img.shields.io/github/languages/count/joellefkowitz/digitalOcean-inventory
+[release_shield]: https://img.shields.io/github/v/tag/joellefkowitz/digitalocean-inventory
+[license_shield]: https://img.shields.io/github/license/joellefkowitz/digitalocean-inventory
+[lines_shield]: https://img.shields.io/tokei/lines/github/joellefkowitz/digitalocean-inventory
+[languages_shield]: https://img.shields.io/github/languages/count/joellefkowitz/digitalocean-inventory
 
 <!-- Health shields -->
 
 [codacy_shield]: https://img.shields.io/codacy/grade/5d5c3600cd99457e8d9a3bc3f16adff8
-[readthedocs_shield]: https://img.shields.io/readthedocs/digitalOcean-inventory
-[travis_shield]: https://img.shields.io/travis/com/joellefkowitz/digitalOcean-inventory
+[readthedocs_shield]: https://img.shields.io/readthedocs/digitalocean-inventory
+[travis_shield]: https://img.shields.io/travis/com/joellefkowitz/digitalocean-inventory
 [codacy_coverage_shield]: https://img.shields.io/codacy/coverage/5d5c3600cd99457e8d9a3bc3f16adff8
 
 <!-- Repository shields -->
 
-[issues_shield]: https://img.shields.io/github/issues/joellefkowitz/digitalOcean-inventory
-[issues_closed_shield]: https://img.shields.io/github/issues-closed/joellefkowitz/digitalOcean-inventory
-[pulls_shield]: https://img.shields.io/github/issues-pr/joellefkowitz/digitalOcean-inventory
-[pulls_closed_shield]: https://img.shields.io/github/issues-pr-closed/joellefkowitz/digitalOcean-inventory
+[issues_shield]: https://img.shields.io/github/issues/joellefkowitz/digitalocean-inventory
+[issues_closed_shield]: https://img.shields.io/github/issues-closed/joellefkowitz/digitalocean-inventory
+[pulls_shield]: https://img.shields.io/github/issues-pr/joellefkowitz/digitalocean-inventory
+[pulls_closed_shield]: https://img.shields.io/github/issues-pr-closed/joellefkowitz/digitalocean-inventory
 
 <!-- Publishers shields -->
 
@@ -281,6 +281,6 @@ Lots of love to the open source community!
 
 <!-- Activity shields -->
 
-[contributors_shield]: https://img.shields.io/github/contributors/joellefkowitz/digitalOcean-inventory
-[monthly_commits_shield]: https://img.shields.io/github/commit-activity/m/joellefkowitz/digitalOcean-inventory
-[last_commit_shield]: https://img.shields.io/github/last-commit/joellefkowitz/digitalOcean-inventory
+[contributors_shield]: https://img.shields.io/github/contributors/joellefkowitz/digitalocean-inventory
+[monthly_commits_shield]: https://img.shields.io/github/commit-activity/m/joellefkowitz/digitalocean-inventory
+[last_commit_shield]: https://img.shields.io/github/last-commit/joellefkowitz/digitalocean-inventory

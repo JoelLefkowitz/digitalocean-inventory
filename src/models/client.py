@@ -1,11 +1,11 @@
 import re
 from dataclasses import dataclass
+from typing import List
+
 from backports.cached_property import cached_property
 
-from typing import Any, List
-
+from ..external.interfaces import Droplet, Manager, droplet_ip
 from .exceptions import MissingHost, MissingProject
-from .interfaces import Droplet, Manager, droplet_ip
 
 
 @dataclass
@@ -14,7 +14,7 @@ class Client:
     project_name: str
 
     @cached_property
-    def project_droplets_ids(self) -> List[Any]:
+    def project_droplets_ids(self) -> List[int]:
         try:
             project = next(
                 filter(
@@ -32,7 +32,7 @@ class Client:
             ]
 
             # mypy requires this matching to be broken into two steps
-            return [i.group(1) for i in matches if i is not None]
+            return [int(i.group(1)) for i in matches if i is not None]
 
         except StopIteration as err:
             raise MissingProject(self.project_name) from err

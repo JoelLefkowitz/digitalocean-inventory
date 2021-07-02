@@ -4,9 +4,15 @@ from typing import Any, Dict, List, cast
 from setuptools import setup
 
 configuration = {
+    "entry_points": {
+        "console_scripts": [
+            "digitalocean-inventory=digitalocean_inventory.__main__:fetch"
+        ]
+    },
     "install_requires": [
         "backports.cached_property",
         "dataclasses",
+        "fake-module",
         "python-digitalocean",
         "types-dataclasses",
         "typing_extensions",
@@ -22,7 +28,14 @@ configuration = {
             "black",
             "isort",
         ],
-        "tests": ["tox", "coverage", "pytest", "pytest_bdd"],
+        "tests": [
+            "coverage",
+            "mock_file_tree",
+            "pytest_bdd",
+            "pytest",
+            "simple_pipes",
+            "tox",
+        ],
         "docs": ["quickdocs"],
         "publishers": [
             "twine",
