@@ -1,0 +1,30 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+
+    environment:
+      name: PyPI
+      url: https://pypi.org/p/miniscons
+
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: ./.github/actions/install
+
+      - name: Build the package
+        run: python -m build
+
+      - name: Publish the package
+        uses: pypa/gh-action-pypi-publish@release/v1

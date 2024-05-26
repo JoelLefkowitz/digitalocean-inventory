@@ -1,23 +1,15 @@
 #!/usr/bin/env python
 import argparse
-
-from safe_environ import from_env  # type: ignore
-
 from .formatter import Formatter
 from .inventory import Inventory
 from .manager import Manager
+from safe_environ import from_env  # type: ignore
 
 parser = argparse.ArgumentParser("Digital ocean inventory")
 parser.add_argument("--host", type=str, nargs="?", default=False)
-parser.add_argument(
-    "--list", type=bool, nargs="?", default=False, const=True
-)
-parser.add_argument(
-    "--debug", type=bool, nargs="?", default=False, const=True
-)
-parser.add_argument(
-    "--private-ips", type=bool, nargs="?", default=False, const=True
-)
+parser.add_argument("--list", type=bool, nargs="?", default=False, const=True)
+parser.add_argument("--debug", type=bool, nargs="?", default=False, const=True)
+parser.add_argument("--private-ips", type=bool, nargs="?", default=False, const=True)
 
 
 def fetch(stdout=True) -> Inventory:

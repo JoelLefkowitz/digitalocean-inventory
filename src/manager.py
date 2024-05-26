@@ -1,16 +1,12 @@
+import digitalocean  # type: ignore
+from .exceptions import MissingProjectError
+from .formatter import Formatter
 from functools import cached_property
 from typing import Dict, List
 
-import digitalocean  # type: ignore
-
-from .exceptions import MissingProjectError
-from .formatter import Formatter
-
 
 class Manager:
-    def __init__(
-        self, private_ips: bool, formatter: Formatter, token: str
-    ) -> None:
+    def __init__(self, private_ips: bool, formatter: Formatter, token: str) -> None:
         self.private_ips = private_ips
         self.formatter = formatter
         self.manager = digitalocean.Manager(token=token)
@@ -24,8 +20,8 @@ class Manager:
                     self.manager.get_all_projects(),
                 )
             )
-        except StopIteration:
-            raise MissingProjectError(self.formatter.project_name)
+        except StopIteration as error:
+            raise MissingProjectError(self.formatter.project_name) from error
 
         project_droplet_ids = list(
             map(
@@ -48,9 +44,7 @@ class Manager:
     def meta_hostvars(self) -> Dict:
         return {
             "hostvars": {
-                self.droplet_ipv4(droplet): self.droplet_hostvars(
-                    droplet
-                )
+                self.droplet_ipv4(droplet): self.droplet_hostvars(droplet)
                 for droplet in self.project_droplets
             }
         }

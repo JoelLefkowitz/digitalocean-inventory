@@ -1,10 +1,9 @@
 import json
 import pprint
-from dataclasses import dataclass
-from typing import Dict, Optional
-
 from .exceptions import MissingHostError
 from .manager import Manager
+from dataclasses import dataclass
+from typing import Dict, Optional
 
 
 @dataclass
@@ -18,11 +17,10 @@ class Inventory:
         if self.host:
             return self.dump(self.specific_host(self.host))
 
-        elif self.lst:
+        if self.lst:
             return self.dump(self.full_inventory)
 
-        else:
-            return self.raw
+        return self.raw
 
     @property
     def raw(self) -> str:
@@ -55,19 +53,14 @@ class Inventory:
         try:
             host = next(
                 filter(
-                    lambda x: self.manager.droplet_ipv4(x)
-                    == self.host,
+                    lambda x: self.manager.droplet_ipv4(x) == self.host,
                     self.manager.project_droplets,
                 )
             )
             return self.manager.droplet_hostvars(host)
 
-        except StopIteration:
-            raise MissingHostError(host)
+        except StopIteration as error:
+            raise MissingHostError(host) from error
 
     def dump(self, output: Dict) -> str:
-        return (
-            pprint.pformat(output, indent=2)
-            if self.debug
-            else json.dumps(output)
-        )
+        return pprint.pformat(output, indent=2) if self.debug else json.dumps(output)

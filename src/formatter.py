@@ -1,8 +1,7 @@
 import os
 import re
-from dataclasses import dataclass
-
 from .exceptions import DropletNameError
+from dataclasses import dataclass
 
 
 @dataclass
@@ -19,9 +18,7 @@ class Formatter:
         return f"{self.project}-{self.env}-{index}"
 
     def ssh_key_path(self, index: int) -> str:
-        return os.path.join(
-            self.ssh_dir, f"{self.project}-{self.env}-{index}"
-        )
+        return os.path.join(self.ssh_dir, f"{self.project}-{self.env}-{index}")
 
     def parse_index(self, name: str) -> int:
         prefix = f"^{self.project}-{self.env}-"
@@ -31,9 +28,8 @@ class Formatter:
         if not re.match(pattern, name):
             raise DropletNameError(name, pattern)
 
-        else:
-            search = re.search(suffix, name)
+        search = re.search(suffix, name)
 
-            # Allow mypy to reveal non-optional type
-            assert search is not None
-            return int(search.group())
+        # Allow mypy to reveal non-optional type
+        assert search is not None
+        return int(search.group())
