@@ -8,7 +8,7 @@ An Ansible dynamic inventory for DigitalOcean.
 ![Quality](https://img.shields.io/codacy/grade/5d5c3600cd99457e8d9a3bc3f16adff8)
 ![Coverage](https://img.shields.io/codacy/coverage/5d5c3600cd99457e8d9a3bc3f16adff8)
 
-## Installation
+## Installing
 
 ```bash
 pip install digitalocean-inventory
