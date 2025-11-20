@@ -2,7 +2,7 @@
 
 An Ansible dynamic inventory for DigitalOcean.
 
-![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/digitalocean-inventory/review.yml)
+![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/digitalocean-inventory/review.yaml)
 ![Version](https://img.shields.io/pypi/v/digitalocean-inventory)
 ![Downloads](https://img.shields.io/pypi/dw/digitalocean-inventory)
 ![Quality](https://img.shields.io/codacy/grade/5d5c3600cd99457e8d9a3bc3f16adff8)
